@@ -1,3 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Ajouter une note{% endblock %}
+
+{% block body %}
+
+{% if editTitle %}
+
+<h1>Modifier la note</h1>
+
+{% else %}
+
+<h1>Ajouter une note</h1>
+
+{% endif %}
+
+{{form(formNote)}}
+
+{% endblock %}

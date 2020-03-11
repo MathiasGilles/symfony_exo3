@@ -6,6 +6,7 @@ use App\Entity\Note;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class NoteType extends AbstractType
 {
@@ -14,6 +15,7 @@ class NoteType extends AbstractType
         $builder
             ->add('value')
             ->add('subject')
+            ->add('save',SubmitType::class)
         ;
     }
 

@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Note;
+use App\Form\NoteType;
 use App\Repository\NoteRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class NoteController extends AbstractController
 {
@@ -15,7 +17,7 @@ class NoteController extends AbstractController
      */
     public function index(NoteRepository $repo)
     {
-        $notes = $repo->fidnAll();
+        $notes = $repo->findAll();
 
         return $this->render('note/index.html.twig', [
             'notes' => $notes,
@@ -26,14 +28,14 @@ class NoteController extends AbstractController
      * @Route("/note/new",name="note_new")
      * @Route("/note/edit/{id}",name="note_edit")
      */
-    public function new(Note $note = nul,Request $request)
+    public function new(Note $note = null,Request $request)
     {
-        if ($note = null ) {
+        if ($note == null ) {
             $note = new Note();
         }
         $manager = $this->getDoctrine()->getManager();
         $form = $this->createForm(NoteType::class, $note);
-        $form -> handleRequest($user);
+        $form -> handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $note->setCreatedAt(new \DateTime);
             $form->persist($user);
@@ -43,8 +45,8 @@ class NoteController extends AbstractController
 
         return $this->render('note/note_new.html.twig',[
             'formNote' => $form->createView(),
-            'editTitle' => $user->getId() != null,
-            'editMode' => $user->getId() != null,
+            'editTitle' => $note->getId() != null,
+            'editMode' => $note->getId() != null,
         ]);
     }
 
