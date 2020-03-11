@@ -6,6 +6,7 @@ use App\Entity\Subject;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class SubjectType extends AbstractType
 {
@@ -14,6 +15,7 @@ class SubjectType extends AbstractType
         $builder
             ->add('name')
             ->add('coefficient')
+            ->add('save',SubmitType::class)
         ;
     }
 

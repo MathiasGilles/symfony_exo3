@@ -2,18 +2,78 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Subject;
+use App\Form\SubjectType;
+use App\Repository\SubjectRepository;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SubjectController extends AbstractController
 {
     /**
      * @Route("/subject", name="subject")
      */
-    public function index()
+    public function index(SubjectRepository $repo)
     {
+        $subjects = $repo->findAll();
+
         return $this->render('subject/index.html.twig', [
-            'controller_name' => 'SubjectController',
+            'subjects' => $subjects,
+        ]);
+    }
+
+    /**
+     * @Route("/subject/new",name="subject_new")
+     * @Route("/subject/edit/{id}",name="subject_edit")
+     */
+    public function new(Subject $subject = null,Request $request)
+    {
+        if ($subject == null ) {
+            $subject = new Subject();
+        }
+        $manager = $this->getDoctrine()->getManager();
+        $form = $this->createForm(SubjectType::class, $subject);
+        $form -> handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $form->persist($subject);
+            $form->flush();
+            $this->addFlash("succes","Matière enregistrée");
+        }
+
+        return $this->render('note/note_new.html.twig',[
+            'formSubject' => $form->createView(),
+            'editTitle' => $subject->getId() != null,
+            'editMode' => $subject->getId() != null,
+        ]);
+    }
+    /**
+     * @Route("/subject/delete/{id}",name="subject_delete")
+     */
+    public function delete(Subject $subject = null)
+    {
+        if($subject != null){
+            $manager=$this->getDoctrine()->getManager();
+            $manager->remove($subject);
+            $manager->flush();
+
+            $this->addFlash("success","Matière supprimée");
+        }
+        else {
+            $this->addFlash("danger","Matière introuvable");
+        }
+        return $this->redirectToRoute('/');
+    }
+
+    /**
+     * @Route("/task/subject/{id}",name="subject_detail")
+     */
+    public function detail($id,SubjectRepository $repo){
+
+        $subject = $repo->find($id);
+
+        return $this->render('subject/subject_detail.html.twig',[
+            'subject' => $subject,
         ]);
     }
 }
+
