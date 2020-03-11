@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+
+{% if editTitle %}
+
+Modifier le sujet
+    
+{% else %}
+
+Ajouter le sujet
+
+{% endif %}
+
+{% endblock %}
+
+
+{% block body %}
+
+{% if editTitle %}
+
+<h1>Modifier le sujet</h1>
+
+{% else %}
+
+<h1>Ajouter le sujet</h1>
+
+{% endif %}
+
+{{form(formSubject)}}
+
+{% endblock %}

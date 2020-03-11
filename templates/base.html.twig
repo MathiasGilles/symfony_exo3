@@ -25,7 +25,9 @@
         <p class="alert alert-{{type }} ">{{ message }}</p>
         {% endfor %}
         {% endfor %}
+        <div class="container">
         {% block body %}{% endblock %}
+        </div>
         {% block javascripts %}{% endblock %}
         <script src="https://kit.fontawesome.com/fc39d6dffa.js"
             crossorigin="anonymous"></script>

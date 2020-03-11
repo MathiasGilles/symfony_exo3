@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Subject;
 use App\Form\SubjectType;
 use App\Repository\SubjectRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -35,12 +36,12 @@ class SubjectController extends AbstractController
         $form = $this->createForm(SubjectType::class, $subject);
         $form -> handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $form->persist($subject);
-            $form->flush();
-            $this->addFlash("succes","Matière enregistrée");
+            $manager->persist($subject);
+            $manager->flush();
+            $this->addFlash("success","Matière enregistrée");
         }
 
-        return $this->render('note/note_new.html.twig',[
+        return $this->render('subject/subject_new.html.twig',[
             'formSubject' => $form->createView(),
             'editTitle' => $subject->getId() != null,
             'editMode' => $subject->getId() != null,
@@ -61,7 +62,7 @@ class SubjectController extends AbstractController
         else {
             $this->addFlash("danger","Matière introuvable");
         }
-        return $this->redirectToRoute('/');
+        return $this->redirectToRoute('subject');
     }
 
     /**

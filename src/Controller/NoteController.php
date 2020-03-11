@@ -38,9 +38,9 @@ class NoteController extends AbstractController
         $form -> handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $note->setCreatedAt(new \DateTime);
-            $form->persist($user);
-            $form->flush();
-            $this->addFlash("succes","Note enregistrée");
+            $manager->persist($note);
+            $manager->flush();
+            $this->addFlash("success","Note enregistrée");
         }
 
         return $this->render('note/note_new.html.twig',[

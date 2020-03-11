@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{subject.name}}{% endblock %}
+
+{% block body %}
+
+<h1>{{subject.name}}</h1>
+
+<h6> Coeff : {{subject.coefficient}}</h6>
+
+<h2><a href="{{path('subject_edit', {id:subject.id})}}">Mettre à jour</a></h2>
+<a class="btn btn-danger" href={{path('subject_delete', {id:subject.id})}}}}">Supprimer</a>
+
+{% endblock %}
