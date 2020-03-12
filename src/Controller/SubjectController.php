@@ -7,6 +7,7 @@ use App\Form\SubjectType;
 use App\Repository\SubjectRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -31,7 +32,7 @@ class SubjectController extends AbstractController
      * @Route("/subject/new",name="subject_new")
      * @Route("/subject/edit/{id}",name="subject_edit")
      */
-    public function new(Subject $subject = null,Request $request)
+    public function new(Subject $subject = null,Request $request,TranslatorInterface $translator)
     {
         if ($subject == null ) {
             $subject = new Subject();
@@ -42,7 +43,7 @@ class SubjectController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($subject);
             $manager->flush();
-            $this->addFlash("success","Matière enregistrée");
+            $this->addFlash("success",$translator->trans('subject.subjectRegister'));
         }
 
         return $this->render('subject/subject_new.html.twig',[
@@ -54,17 +55,17 @@ class SubjectController extends AbstractController
     /**
      * @Route("/subject/delete/{id}",name="subject_delete")
      */
-    public function delete(Subject $subject = null)
+    public function delete(Subject $subject = null,TranslatorInterface $translator)
     {
         if($subject != null){
             $manager=$this->getDoctrine()->getManager();
             $manager->remove($subject);
             $manager->flush();
 
-            $this->addFlash("success","Matière supprimée");
+            $this->addFlash("success",$translator->trans('categorie.added'));
         }
         else {
-            $this->addFlash("danger","Matière introuvable");
+            $this->addFlash("danger",$translator->trans('categorie.added'));
         }
         return $this->redirectToRoute('subject');
     }

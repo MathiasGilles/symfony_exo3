@@ -30,4 +30,11 @@
         {% endfor %}
     </tbody>
 </table>
+{{ 'note.average'|trans}} : 
+{% for note in notes %}
+{{note.value * note.subject.coefficient / note.subject.coefficient }}
+{% endfor %}
+
+
+
 {% endblock %}

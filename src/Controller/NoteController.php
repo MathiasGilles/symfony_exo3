@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/{_locale}")
@@ -32,7 +33,7 @@ class NoteController extends AbstractController
      * @Route("/note/new",name="note_new")
      * @Route("/note/edit/{id}",name="note_edit")
      */
-    public function new(Note $note = null,Request $request)
+    public function new(Note $note = null,Request $request,TranslatorInterface $translator)
     {
         if ($note == null ) {
             $note = new Note();
@@ -44,7 +45,7 @@ class NoteController extends AbstractController
             $note->setCreatedAt(new \DateTime);
             $manager->persist($note);
             $manager->flush();
-            $this->addFlash("success","Note enregistrée");
+            $this->addFlash("success",$translator->trans('note.noteAdded'));
         }
 
         return $this->render('note/note_new.html.twig',[
@@ -57,17 +58,17 @@ class NoteController extends AbstractController
     /**
      * @Route("/note/delete/{id}",name="note_delete")
      */
-    public function delete(Note $note = null)
+    public function delete(Note $note = null,TranslatorInterface $translator)
     {
         if($note != null){
             $manager=$this->getDoctrine()->getManager();
             $manager->remove($note);
             $manager->flush();
 
-            $this->addFlash("success","Note supprimée");
+            $this->addFlash("success",$translator->trans('note.noteDelete'));
         }
         else {
-            $this->addFlash("danger","Note introuvable");
+            $this->addFlash("danger",$translator->trans('note.noteNotFound'));
         }
         return $this->redirectToRoute('/');
     }

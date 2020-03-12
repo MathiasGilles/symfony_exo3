@@ -13,6 +13,10 @@ note:
     editNote: 'Edit note'
     coeff: Coefficient
     createdAt: 'Created At'
+    average: Average
+    noteAdded: 'Note added'
+    noteDelete: 'Note deleted'
+    noteNotFound: 'Note not found'
 
 subject:
     name: Subject
@@ -20,3 +24,6 @@ subject:
     editSubject: 'Edit the subject'
     update: 'Update'
     delete: Delete
+    subjectRegister: 'Subject registered'
+    subjectDelete: 'Subject deleted'
+    subjectNotFound: 'Subject not found'
