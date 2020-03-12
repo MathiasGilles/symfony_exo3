@@ -5,11 +5,11 @@
 
 {% if editTitle %}
 
-Modifier le sujet
+{{ 'subject.editSubject'|trans}}
     
 {% else %}
 
-Ajouter le sujet
+{{ 'subject.addSubject'|trans}}
 
 {% endif %}
 
@@ -20,11 +20,11 @@ Ajouter le sujet
 
 {% if editTitle %}
 
-<h1>Modifier le sujet</h1>
+<h1>{{ 'subject.editSubject'|trans}}</h1>
 
 {% else %}
 
-<h1>Ajouter le sujet</h1>
+<h1>{{'subject.addSubject'|trans}}</h1>
 
 {% endif %}
 

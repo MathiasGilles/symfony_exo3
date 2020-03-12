@@ -6,17 +6,17 @@
 
 <h1>Notes</h1>
 
-<a class="btn btn-primary" href="{{path('note_new')}}">Ajouter une note</a>
+<a class="btn btn-primary" href="{{path('note_new')}}">{{ 'note.addNote'|trans }}</a>
 
 <br><br>
 
 <table class="table">
     <thead> 
         <tr>
-            <td>Matières</td>
+            <td>{{'subject.name'|trans}}</td>
             <td>Note</td>
-            <td>Coeff</td>
-            <td>Ajouté le</td>
+            <td>{{ 'note.coeff'|trans}}</td>
+            <td>{{ 'note.createdAt'|trans}}</td>
         </tr>
     </thead>
     <tbody>

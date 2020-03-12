@@ -10,6 +10,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Validator\Constraints\DateTime;
 
+/**
+ * @Route("/{_locale}")
+ */
+
 class NoteController extends AbstractController
 {
     /**

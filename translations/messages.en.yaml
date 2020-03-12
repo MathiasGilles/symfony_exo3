@@ -1,0 +1,22 @@
+Value: Value
+
+Subject: Subject
+
+Save: Save
+
+Name: Name
+
+Coefficient: Coefficient
+
+note:
+    addNote: 'Create note'
+    editNote: 'Edit note'
+    coeff: Coefficient
+    createdAt: 'Created At'
+
+subject:
+    name: Subject
+    addSubject: 'Add a subject'
+    editSubject: 'Edit the subject'
+    update: 'Update'
+    delete: Delete

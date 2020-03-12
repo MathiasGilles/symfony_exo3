@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une note{% endblock %}
+{% block title %}{{ 'note.addNote'|trans}}{% endblock %}
 
 {% block body %}
 
 {% if editTitle %}
 
-<h1>Modifier la note</h1>
+<h1>{{ 'note.editNote'|trans}}</h1>
 
 {% else %}
 
-<h1>Ajouter une note</h1>
+<h1>{{ 'note.addNote'|trans}}</h1>
 
 {% endif %}
 

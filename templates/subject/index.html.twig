@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Matières{% endblock %}
+{% block title %}{{ 'subject.name'|trans}}{% endblock %}
 
 {% block body %}
 
-<h1>Matières</h1>
+<h1>{{ 'subject.name'|trans}}</h1>
 
-<a class="btn btn-primary" href="{{path('subject_new')}}">Créer une matière</a>
+<a class="btn btn-primary" href="{{path('subject_new')}}">{{ 'subject.addSubject'|trans}}</a>
 
 <br><br>
 
 <table class="table">
     <thead>
         <tr>
-            <td>Matières</td>
+            <td>{{ 'subject.name'|trans}}</td>
             <td>Coefficient</td>
             <td>Action</td>
         </tr>

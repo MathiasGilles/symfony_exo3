@@ -1,0 +1,22 @@
+Value: Valeur
+
+Subject: Matières
+
+Save: Sauvegarder
+
+Name: Nom
+
+Coefficient: Coefficient
+
+note:
+    addNote: 'Ajouter une note'
+    editNote: 'Modifier la note'
+    coeff: Coefficient
+    createdAt: 'Ajouter le'
+
+subject:
+    name: Matière
+    addSubject: 'Ajouter une matière'
+    editSubject: 'Modifier la matière'
+    update: 'Mettre à jour'
+    delete: Supprimer
