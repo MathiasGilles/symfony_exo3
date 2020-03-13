@@ -52,6 +52,7 @@ class SubjectController extends AbstractController
             'editMode' => $subject->getId() != null,
         ]);
     }
+    
     /**
      * @Route("/subject/delete/{id}",name="subject_delete")
      */
@@ -62,10 +63,10 @@ class SubjectController extends AbstractController
             $manager->remove($subject);
             $manager->flush();
 
-            $this->addFlash("success",$translator->trans('categorie.added'));
+            $this->addFlash("success",$translator->trans('subject.subjectDelete'));
         }
         else {
-            $this->addFlash("danger",$translator->trans('categorie.added'));
+            $this->addFlash("danger",$translator->trans('subject.subjectNotFound'));
         }
         return $this->redirectToRoute('subject');
     }

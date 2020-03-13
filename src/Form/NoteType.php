@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Note;
+use App\Entity\User;
 use App\Entity\Subject;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,6 +21,13 @@ class NoteType extends AbstractType
                 'class' => Subject::class,
                 'choice_label' => function($subject){
                     $display = $subject->getName() . " | " . "Coeff : " . $subject->getCoefficient();
+                    return $display;
+                },
+            ])
+            ->add('user',EntityType::class,[
+                'class'=> User::class,
+                'choice_label' => function($user){
+                    $display = $user->getFirstName() . $user->getLastName();
                     return $display;
                 },
             ])

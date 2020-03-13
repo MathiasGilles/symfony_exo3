@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+
+<br>
+<a class="btn btn-primary" href="{{path('user_new')}}">+Create User</a>
+<br><br>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Nom</td>
+            <td>Prénom</td>
+            <td>Photo</td>
+            <td>Moyenne</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{user.lastName}}</td>
+            <td>{{user.firstName}}</td>
+            <td> <img src="{{asset('/uploads/'~ user.photo)}}" style="width:100px;height:100px;"/> </td>
+            <td></td>
+            <td><a class="btn btn-secondary" href="{{path('user_detail', {id:user.id})}}">Info</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

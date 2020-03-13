@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{user.firstName}}{{user.lastName}}{% endblock %}
+
+{% block body %}
+
+<div class="pt-3 mx-3">
+    <div class="p-3 border-light  card shadow">
+        <h2 class="mx-auto">{{user.firstName}} {{user.lastName}} </h2>
+        <p class="mx-auto"><img src="{{asset('/uploads/'~ user.photo)}}"
+            style="width:100px;height:100px;" /></p>
+        <p>
+            <h3>Infos: </h3>
+                       
+            <div>
+                <h4 class="d-inline-block">
+                    {% for note in user.notes%}
+                    {{note.value}}
+                    {% endfor %}
+                </h4>
+                <br>
+                <a href="{{path('user_edit', {id:user.id})}}"><i
+                        class="text-warning far fa-edit"></i></a>
+                <a href="{{path('user_delete', {id:user.id})}}"><i
+                        class="text-danger fas fa-trash"></i></a>
+            </div>
+        </p>
+    </div>
+</div>
+
+{% endblock %}
